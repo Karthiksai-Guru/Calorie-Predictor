@@ -1,18 +1,23 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 from functools import lru_cache
 
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .artifacts import load_artifacts
 from .preprocessing import prepare_features
 from .schemas import MetadataResponse, PredictionInput, PredictionResponse
 
 app = FastAPI(title="Calorie Predictor API", version="1.0.0")
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+FRONTEND_DIST = BASE_DIR / "frontend" / "dist"
 
 cors_env = os.getenv("CORS_ORIGINS", "")
 if cors_env:
@@ -63,3 +68,12 @@ def predict(payload: PredictionInput):
     calories = float(np.clip(calories, clip_min, clip_max))
 
     return PredictionResponse(calories=calories)
+
+
+if FRONTEND_DIST.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIST, html=True), name="frontend")
+else:
+
+    @app.get("/")
+    def root_message():
+        return {"message": "Frontend build not found. Run npm install and npm run build."}
