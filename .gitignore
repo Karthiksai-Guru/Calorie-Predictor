@@ -1,0 +1,36 @@
+# Sensitive data
+*.csv
+*.ipynb
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env files
+.env
+
+# Local logs
+log.md
+
+# Local notes
+plan.md
+read.md
+
+# OS
+.DS_Store
+Thumbs.db

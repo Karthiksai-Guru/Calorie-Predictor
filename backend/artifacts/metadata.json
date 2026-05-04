@@ -1,0 +1,86 @@
+{
+  "feature_names": [
+    "Sex",
+    "Age",
+    "Height",
+    "Weight",
+    "Duration",
+    "Heart_Rate",
+    "Body_Temp",
+    "Age_x_Height",
+    "Age_x_Weight",
+    "Age_x_Duration",
+    "Age_x_Heart_Rate",
+    "Age_x_Body_Temp",
+    "Height_x_Weight",
+    "Height_x_Duration",
+    "Height_x_Heart_Rate",
+    "Height_x_Body_Temp",
+    "Weight_x_Duration",
+    "Weight_x_Heart_Rate",
+    "Weight_x_Body_Temp",
+    "Duration_x_Heart_Rate",
+    "Duration_x_Body_Temp",
+    "Heart_Rate_x_Body_Temp"
+  ],
+  "raw_features": [
+    "Sex",
+    "Age",
+    "Height",
+    "Weight",
+    "Duration",
+    "Heart_Rate",
+    "Body_Temp"
+  ],
+  "cross_term_features": [
+    "Age_x_Height",
+    "Age_x_Weight",
+    "Age_x_Duration",
+    "Age_x_Heart_Rate",
+    "Age_x_Body_Temp",
+    "Height_x_Weight",
+    "Height_x_Duration",
+    "Height_x_Heart_Rate",
+    "Height_x_Body_Temp",
+    "Weight_x_Duration",
+    "Weight_x_Heart_Rate",
+    "Weight_x_Body_Temp",
+    "Duration_x_Heart_Rate",
+    "Duration_x_Body_Temp",
+    "Heart_Rate_x_Body_Temp"
+  ],
+  "feature_ranges": {
+    "Age": {
+      "min": 20.0,
+      "max": 79.0
+    },
+    "Height": {
+      "min": 126.0,
+      "max": 222.0
+    },
+    "Weight": {
+      "min": 36.0,
+      "max": 132.0
+    },
+    "Duration": {
+      "min": 1.0,
+      "max": 30.0
+    },
+    "Heart_Rate": {
+      "min": 67.0,
+      "max": 128.0
+    },
+    "Body_Temp": {
+      "min": 37.1,
+      "max": 41.5
+    }
+  },
+  "clip_min": 1.0,
+  "clip_max": 314.0,
+  "target_transform": "log1p",
+  "sex_classes": [
+    "female",
+    "male"
+  ],
+  "validation_fraction": 0.0
+}
