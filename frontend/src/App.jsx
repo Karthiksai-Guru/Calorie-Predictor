@@ -96,13 +96,6 @@ function App() {
       if (!Number.isFinite(numeric)) {
         return `Enter a valid ${field.label.toLowerCase()}.`
       }
-      const range = metadata.feature_ranges?.[field.key]
-      if (range && (numeric < range.min || numeric > range.max)) {
-        return `${field.label} must be between ${formatValue(
-          range.min,
-          field.decimals,
-        )} and ${formatValue(range.max, field.decimals)}.`
-      }
     }
     return ''
   }
@@ -153,11 +146,10 @@ function App() {
   return (
     <div className="page">
       <header className="hero">
-        <span className="eyebrow">Assessment demo</span>
         <h1>Calorie Predictor</h1>
         <p>
           Estimate calories burned from workout metrics. Input ranges are
-          derived from the training data for more reliable predictions.
+          derived from the training data as suggested guidance.
         </p>
         <div className="hero-badges">
           <span className="badge">Model: XGBoost</span>
@@ -170,7 +162,7 @@ function App() {
         <section className="panel form-panel">
           <div className="panel-header">
             <h2>Input details</h2>
-            <p>Stay within the learned ranges for best accuracy.</p>
+            <p>Suggested ranges are shown for reference.</p>
           </div>
 
           {metaStatus === 'loading' && (
@@ -208,11 +200,11 @@ function App() {
               {FIELD_CONFIG.map((field) => {
                 const range = metadata?.feature_ranges?.[field.key]
                 const rangeText = range
-                  ? `Range: ${formatValue(range.min, field.decimals)} - ${formatValue(
+                  ? `Suggested: ${formatValue(range.min, field.decimals)} - ${formatValue(
                       range.max,
                       field.decimals,
                     )} ${field.unit}`
-                  : 'Range pending'
+                  : 'Suggested range pending'
 
                 return (
                   <div className="field" key={field.key}>
@@ -223,8 +215,6 @@ function App() {
                       type="number"
                       inputMode="decimal"
                       step={field.step}
-                      min={range?.min}
-                      max={range?.max}
                       value={formValues[field.key]}
                       onChange={handleChange(field.key)}
                       required
@@ -277,7 +267,7 @@ function App() {
               </p>
             </div>
             <div>
-              <h3>Input ranges</h3>
+              <h3>Suggested ranges</h3>
               <p>Derived from the training data.</p>
             </div>
           </div>
